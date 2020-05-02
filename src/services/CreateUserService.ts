@@ -2,14 +2,13 @@ import { hash } from 'bcryptjs';
 import User from '../models/User';
 import UserRequestInterface from '../interfaces/UserRequestInterface';
 import AppError from '../errors/AppError';
-import UserInterface from '../interfaces/UserInterface';
 
 class CreateUserService {
     public async execute({
         name,
         email,
         password,
-    }: UserRequestInterface): Promise<UserInterface> {
+    }: UserRequestInterface): Promise<typeof User> {
         const checkUsersExists = await User.findOne(
             {
                 where: { email },
@@ -18,7 +17,7 @@ class CreateUserService {
         );
 
         if (checkUsersExists) {
-            throw new AppError('Email Address Already Used.');
+            throw new AppError(409, 'Email Address Already Used.');
         }
 
         const hashedPassword = await hash(password, 8);
@@ -28,6 +27,8 @@ class CreateUserService {
             email,
             password: hashedPassword,
         });
+
+        console.log(user);
 
         return user;
     }

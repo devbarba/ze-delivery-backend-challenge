@@ -10,7 +10,7 @@ class DeleteUserService {
         const user = await User.findOne(id);
 
         if (!user) {
-            throw new AppError('User not found');
+            throw new AppError(404, 'User not found');
         }
 
         await User.delete(id);
