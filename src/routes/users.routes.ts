@@ -8,11 +8,15 @@ const usersRouter = Router();
 
 usersRouter.use(ensureAuthenticated);
 
-usersRouter.post('/', (request: Request, response: Response) =>
-    response.json({ aa: 'a' })
-);
+usersRouter.get('/', (request: Request, response: Response) => {
+    userController.readUsers(request, response);
+});
 
-usersRouter.delete('/:uuid', async (request, response) => {
+usersRouter.post('/', (request: Request, response: Response) => {
+    userController.createUser(request, response);
+});
+
+usersRouter.delete('/:id', async (request, response) => {
     userController.deleteUser(request, response);
 });
 

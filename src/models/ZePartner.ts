@@ -11,7 +11,7 @@ interface ZePartnerInterface extends Document {
     address: AddressInterface;
 }
 
-const ZePartner = Schema(
+const ZePartner = new Schema(
     {
         id: {
             type: Number,
@@ -38,6 +38,14 @@ const ZePartner = Schema(
         address: {
             type: Object,
             required: true,
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+        },
+        updatedAt: {
+            type: Date,
+            default: Date.now,
         },
     },
     { collection: 'zePartners' }

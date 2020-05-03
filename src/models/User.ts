@@ -1,12 +1,14 @@
 import { Document, model, Schema } from 'mongoose';
-import UserInterface from '../interfaces/UserInterface';
+import { ObjectID } from 'mongodb';
 
-const User = Schema({
-    _id: {
-        type: Schema.ObjectId,
-        required: true,
-        unique: true,
-    },
+interface UserInterface extends Document {
+    _id: ObjectID;
+    name: string;
+    email: string;
+    password: string;
+}
+
+const User = new Schema({
     name: {
         type: String,
         required: true,
@@ -20,8 +22,14 @@ const User = Schema({
         type: String,
         required: true,
     },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
-type UserType = UserInterface & Document;
-
-export default model<UserType>('User', User);
+export default model<UserInterface>('User', User);

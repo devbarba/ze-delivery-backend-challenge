@@ -19,8 +19,9 @@ interface Response {
 
 class AuthenticateUserService {
     public async execute({ email, password }: Request): Promise<Response> {
-        const user = await User.findOne({ where: { email } });
-
+        const user = await User.findOne({ email }).select(
+            '-createdAt -updatedAt -__v'
+        );
         if (!user) {
             throw new AppError(422, 'Incorrect E-mail/Password Combination.');
         }
@@ -33,8 +34,9 @@ class AuthenticateUserService {
 
         const token = sign({}, jwtconfig.jwt, {
             subject: user.id,
-            expiresIn: '1d',
+            expiresIn: jwtconfig.ttl,
         });
+
         return {
             user,
             token,

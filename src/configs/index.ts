@@ -22,6 +22,7 @@ export default class Config {
         this.environment = {
             env: process.env.NODE_ENV || 'development',
             jwt: process.env.JWT_SECRET,
+            ttl: process.env.JWT_TTL,
         };
 
         this.mongo = {

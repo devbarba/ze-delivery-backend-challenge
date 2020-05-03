@@ -7,13 +7,13 @@ interface Request {
 
 class DeleteUserService {
     public async execute({ id }: Request): Promise<void> {
-        const user = await User.findOne(id);
+        const user = await User.findOne({ _id: id });
 
         if (!user) {
             throw new AppError(404, 'User not found');
         }
 
-        await User.delete(id);
+        await User.remove({ _id: id });
     }
 }
 
