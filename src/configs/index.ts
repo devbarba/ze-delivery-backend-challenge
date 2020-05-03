@@ -15,13 +15,14 @@ export default class Config {
 
     constructor() {
         this.express = {
-            port: process.env.PORT || 3000,
+            port: Number(process.env.PORT) || 3000,
             ip: process.env.IP || '127.0.0.1',
         };
 
         this.environment = {
             env: process.env.NODE_ENV || 'development',
             jwt: process.env.JWT_SECRET,
+            ttl: process.env.JWT_TTL,
         };
 
         this.mongo = {

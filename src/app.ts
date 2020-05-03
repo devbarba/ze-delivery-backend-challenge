@@ -3,9 +3,12 @@ import path from 'path';
 import errorHandler from 'errorhandler';
 import bodyParser from 'body-parser';
 import express, { Application } from 'express';
+import 'express-async-errors';
 import routes from './routes/index';
 import connect from './database';
 import Config from './configs';
+import AppError from './errors/AppError';
+import errorMiddleware from './middlewares/errorMiddleware';
 
 const mongoConfig = new Config().mongo;
 dotenv.config();
@@ -18,6 +21,7 @@ class App {
         this.mongo();
         this.middlewares();
         this.routes();
+        this.errorHandling();
     }
 
     public mongo() {
@@ -33,19 +37,10 @@ class App {
                 extended: true,
             })
         );
+    }
 
-        this.server.use(
-            (
-                err: any,
-                req: express.Request,
-                res: express.Response,
-                next: express.NextFunction
-            ) => {
-                err.status = 404;
-                next(err);
-            }
-        );
-
+    private errorHandling() {
+        this.server.use(errorMiddleware);
         this.server.use(errorHandler());
     }
 
