@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import ReadPartnerService from '../services/ReadPartnerService';
+import ReadNerbyPartnerService from '../services/ReadNerbyPartnerService';
 import CreatePartnerService from '../services/CreatePartnerService';
+import _ from 'lodash';
 
 export default class PartnerController {
     public async readPartner(
@@ -16,7 +18,30 @@ export default class PartnerController {
                 id,
             });
 
-            delete partner._doc._id;
+            _.omit(partner, ['_id']);
+
+            return response.status(200).json(partner);
+        } catch (err) {
+            return response.status(400).json({ error: err.message });
+        }
+    }
+
+    public async readNerbyPartner(
+        request: Request,
+        response: Response
+    ): Promise<Response> {
+        try {
+            var lat = Number(request.query.lat);
+            var long = Number(request.query.long);
+
+            const readNerbyPartner = new ReadNerbyPartnerService();
+
+            const partner = await readNerbyPartner.execute({
+                long,
+                lat,
+            });
+
+            delete partner._id;
 
             return response.status(200).json(partner);
         } catch (err) {

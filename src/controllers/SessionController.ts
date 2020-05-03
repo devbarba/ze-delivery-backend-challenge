@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import AuthenticateUserService from '../services/AuthenticateUserService';
+import _ from 'lodash';
 
 export default class SessionController {
     public async createSession(
@@ -16,8 +17,8 @@ export default class SessionController {
                 password,
             });
 
-            delete user._doc._id;
-            delete user._doc.password;
+            _.omit(user, ['_id']);
+            _.omit(user, ['password']);
 
             return response.status(200).json({ user, token });
         } catch (err) {

@@ -1,4 +1,4 @@
 export default interface ExpressInterface {
-    port: number | string;
+    port: number;
     ip: string;
 }
