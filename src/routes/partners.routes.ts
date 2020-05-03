@@ -1,7 +1,16 @@
 import { Router, Request, Response } from 'express';
+import PartnerController from '../controllers/PartnerController';
+
+const partnerController = new PartnerController();
 
 const partnersRouter = Router();
 
-// partnersRouter.post('/', (request: Request, response: Response) =>);
+partnersRouter.get('/:id', (request: Request, response: Response) => {
+    partnerController.readPartner(request, response);
+});
+
+partnersRouter.post('/', (request: Request, response: Response) => {
+    partnerController.createPartner(request, response);
+});
 
 export default partnersRouter;

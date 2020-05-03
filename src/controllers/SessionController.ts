@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import AuthenticateUserService from '../services/AuthenticateUserService';
-import _ from 'lodash';
 
 export default class SessionController {
     public async createSession(
