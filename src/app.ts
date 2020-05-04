@@ -3,11 +3,10 @@ import path from 'path';
 import errorHandler from 'errorhandler';
 import bodyParser from 'body-parser';
 import express, { Application } from 'express';
-import 'express-async-errors';
+// import 'express-async-errors';
 import routes from './routes/index';
 import connect from './database';
 import Config from './configs';
-import AppError from './errors/AppError';
 import errorMiddleware from './middlewares/errorMiddleware';
 
 const mongoConfig = new Config().mongo;

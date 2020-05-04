@@ -7,7 +7,7 @@ const routes = Router();
 
 routes.get('/', (request: Request, response: Response) => {
     return response.json({
-        message: 'Ze Delivery Challenge',
+        message: 'Welcome my friend to Ze Delivery Challenge',
     });
 });
 
