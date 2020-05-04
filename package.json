@@ -11,7 +11,8 @@
         "dev:server": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts",
         "start": "ts-node src/server.ts",
         "importData": "ts-node-dev src/utils/Import.ts",
-        "test": "jest"
+        "testIntegration": "mocha -r ts-node/register test/integration/*.ts",
+        "testUnit": "mocha -r ts-node/register test/unit/*.ts"
     },
     "dependencies": {
         "@types/errorhandler": "^1.5.0",
@@ -34,14 +35,19 @@
     },
     "devDependencies": {
         "@types/bcryptjs": "^2.4.2",
+        "@types/chai": "^4.2.11",
+        "@types/mocha": "^7.0.2",
+        "@types/supertest": "^2.0.9",
         "@typescript-eslint/eslint-plugin": "^2.30.0",
         "@typescript-eslint/parser": "^2.30.0",
+        "chai": "^4.2.0",
         "eslint": "^5.16.0",
         "eslint-config-airbnb-base": "^14.1.0",
         "eslint-plugin-import": "^2.20.1",
-        "jest": "^25.5.2",
+        "mocha": "^7.1.2",
         "prettier": "^2.0.5",
-        "ts-jest": "^25.4.0",
+        "supertest": "^4.0.2",
+        "ts-mocha": "^7.0.0",
         "ts-node-dev": "^1.0.0-pre.44",
         "typescript": "^3.8.3"
     }

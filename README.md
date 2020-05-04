@@ -40,7 +40,7 @@ PS: MAC development environment
 
 *   **DATA PERSISTENCE**
 
-    Decidi utilizar o banco NoSQL MongoDB devido a ser um dos melhores para geolocalização contendo algumas funcionalidades interessantes.
+    I decided to use the NoSQL MongoDB database because it is one of the best for geolocation containing some interesting features.
 
 -   **API REST**
 
@@ -339,7 +339,7 @@ No body
 
 ### Prerequisites
 
-To run the application it is necessary to have installed Node in version v13.7.0 or higher, Docker in version 19.03.5, build 633a0ea or higher and Docker-Compose in version 1.25.4, build 8d51620a or higher
+To run the application it is necessary to have installed Node in version v13.7.0 or higher, Docker in version 19.03.5, build 633a0ea or higher, Docker-Compose in version 1.25.4, build 8d51620a or higher and Yarn in version 1.21.1.
 
 ### User to authenticate to the API
 
@@ -356,27 +356,29 @@ To run the application on your machine, follow these steps:
 
 1. git clone [https://github.com/harbsprog/ze-delivery-backend-challenge.git](https://github.com/harbsprog/ze-delivery-backend-challenge.git)
 
-2) cd ze-delivery-backend-challenget `Access the project folder`
+2. cd ze-delivery-backend-challenget `Access the project folder`
 
 3. yarn install `Performs installation of dependencies`
 
-4) cp .env.example .env `Copy environment variables`
+4. cp .env.example .env `Copy environment variables`
 
-5. yarn importData `Import the Pdvs from the pdvs.json file and create a user for testing in the API`
+5. docker-compose up -d `Up the MongoDB and Init database with collections and credentials`
 
-6) yarn start `Run the application`
+6. yarn importData `Import the Pdvs from the pdvs.json file and create a user for testing in the API`
 
-7. Access: http://127.0.0.1:3000/ If you present a welcome message everything went well.
+7. yarn start `Run the application`
+
+8. Access: http://127.0.0.1:3000/ If you present a welcome message everything went well.
 
 ## Tests
 
 Integration tests and unit tests were carried out:
 
 To run the integration tests run the following command:
-`yarn test-integration`
+`yarn testIntegration`
 
 To run the unit tests run the following command:
-`yarn test-unit`
+`yarn testUnit`
 
 ## Author
 
