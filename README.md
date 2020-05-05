@@ -419,8 +419,6 @@ To run the application on your machine, follow these steps:
 
 ## Tests
 
-Integration tests and unit tests were carried out:
-
 To run the tests run the following command:
 `yarn test`
 
