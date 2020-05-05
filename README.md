@@ -24,7 +24,9 @@ First of all, I would like to thank the opportunity to be able to take the test 
 
 I performed a demonstration of the project running, follow link.
 
-[Demo Video](https://youtu.be/)
+[Demo Video](https://youtu.be/IIPNbpdCbMM)
+
+[Insomnia Collection](https://github.com/harbsprog/ze-delivery-backend-challenge/blob/master/Insomnia-ze-delivery-backend-challenge.json)
 
 PS: MAC development environment
 
@@ -48,7 +50,7 @@ PS: MAC development environment
 
 -   **TESTS**
 
-    To perform unit and integration tests, the Mocha, Chai and Supertest facilities were used. You could also have used JEST.
+    To perform unit and integration tests, the JEST and Supertest were used. I could also have used the Mocha and Chai.
 
 -   **OTHERS**
 
@@ -97,7 +99,7 @@ PS: MAC development environment
 | :--------------- | :-------------- |
 | `/users` **GET** | Read all users. |
 
-`/users` **POST** - 404 RESPONSE
+`/users` **GET** - 404 RESPONSE
 
 ```shell
 {
@@ -106,7 +108,7 @@ PS: MAC development environment
 }
 ```
 
-`/users` **POST** - 200 RESPONSE
+`/users` **GET** - 200 RESPONSE
 
 ```shell
   [
@@ -151,6 +153,16 @@ No body
 | resource          | description  |
 | :---------------- | :----------- |
 | `/users` **POST** | Create user. |
+
+`/users` **POST** - BODY
+
+```shell
+{
+	"name": "ze@delivery.com",
+	"email": "ze@delivery.com",
+	"password": "123456"
+}
+```
 
 `/users` **POST** - 409 RESPONSE
 
@@ -288,6 +300,40 @@ No body
 | :------------------- | :-------------- |
 | `/partners` **POST** | Create Partner. |
 
+`/partners` **POST** - BODY
+
+```shell
+{
+  "tradingName": "Mercado Pinheiros",
+  "ownerName": "Luiz Santo",
+  "document": "06004905000116",
+  "coverageArea": {
+    "type": "MultiPolygon",
+    "coordinates": [
+      [
+        [
+          [
+            -46.623238,
+            -21.785538
+          ],
+          [
+            -46.607616,
+            -21.819803
+          ],
+        ]
+      ]
+    ]
+  },
+  "address": {
+    "type": "Point",
+    "coordinates": [
+      -46.57421,
+      -21.785742
+    ]
+  },
+}
+```
+
 `/partners` **POST** - 409 RESPONSE
 
 ```shell
@@ -330,8 +376,9 @@ No body
       -21.785742
     ]
   },
-  "__v": 0,
-  "distanceInMeters": 0.11131884575380743
+  "createdAt": "2020-05-05T20:48:21.746Z",
+  "updatedAt": "2020-05-05T20:48:21.746Z",
+  "__v": 0
 }
 ```
 
@@ -366,7 +413,7 @@ To run the application on your machine, follow these steps:
 
 6. yarn importData `Import the Pdvs from the pdvs.json file and create a user for testing in the API`
 
-7. yarn start `Run the application`
+7. yarn start or yarn dev:server `Run the application`
 
 8. Access: http://127.0.0.1:3000/ If you present a welcome message everything went well.
 
@@ -374,11 +421,8 @@ To run the application on your machine, follow these steps:
 
 Integration tests and unit tests were carried out:
 
-To run the integration tests run the following command:
-`yarn testIntegration`
-
-To run the unit tests run the following command:
-`yarn testUnit`
+To run the tests run the following command:
+`yarn test`
 
 ## Author
 

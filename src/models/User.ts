@@ -1,4 +1,4 @@
-import { Document, model, Schema } from 'mongoose';
+import { Document, Model, model, Schema } from 'mongoose';
 import { ObjectID } from 'mongodb';
 
 interface UserInterface extends Document {
@@ -32,4 +32,9 @@ const User = new Schema({
     },
 });
 
-export default model<UserInterface>('User', User);
+const UserModel: Model<UserInterface> = model<
+    UserInterface,
+    Model<UserInterface>
+>('User', User);
+
+export default UserModel;

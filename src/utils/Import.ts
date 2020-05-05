@@ -41,9 +41,7 @@ class ImportPdvs {
                     await ZePartner.create(obj[1]);
                 }
             });
-        } catch (err) {
-            console.log(err);
-        }
+        } catch (err) {}
     }
 
     public async importUser(): Promise<void> {
@@ -59,10 +57,10 @@ class ImportPdvs {
                 if (!userToAdd) {
                     await User.create(obj);
                 }
+
+                process.exit();
             });
-        } catch (err) {
-            console.log(err);
-        }
+        } catch (err) {}
     }
 }
 

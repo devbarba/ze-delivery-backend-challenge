@@ -3,6 +3,7 @@ import path from 'path';
 import errorHandler from 'errorhandler';
 import bodyParser from 'body-parser';
 import express, { Application } from 'express';
+import cors from 'cors';
 import 'express-async-errors';
 import routes from './routes/index';
 import connect from './database';
@@ -29,6 +30,7 @@ class App {
     }
 
     public middlewares() {
+        this.server.use(cors());
         this.server.use(express.static(path.join(__dirname, 'public')));
         this.server.use(bodyParser.json());
         this.server.use(
